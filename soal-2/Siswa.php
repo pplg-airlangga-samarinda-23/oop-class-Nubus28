@@ -1,24 +1,41 @@
 <?php
+class Siswa {
+    private $nama;
+    private $nisn;
+    private $alamat;
+    private $jurusan;
+    private $tanggalLahir;
 
-class Siswa
-{
-    // deklarasikan atribut-atribut kelas Siswa
+    public function __construct($nama, $nisn, $alamat, $jurusan, $tanggalLahir) {
+        $this->nama = $nama;
+        $this->nisn = $nisn;
+        $this->alamat = $alamat;
+        $this->jurusan = $jurusan;
+        $this->tanggalLahir = $tanggalLahir;
+    }
 
-    
-    // definisikan metode konstruktor, setter ,dan getter
-
-
-    // buat metode untuk menghitung umur siswa
     public function hitungUmur() {
-
-
-        return $umur;
+        $tanggalLahir = new DateTime($this->tanggalLahir);
+        $today = new DateTime();
+        $umur = $today->diff($tanggalLahir);
+        return $umur->y;
     }
 }
 
-// buat dua buah objek siswa
-$siswa_1 = new Siswa("Bambang", "1234", "Loa Bakung", "PPLG", "27-11-2006");
-$siswa_2 = new Siswa("Bahrun", "1235", "Air Putih", "PPLG", "13-01-2007");
+// Membuat objek siswa
+$siswa1 = new Siswa("Bambang", "1234", "Loa Bakung", "PPLG", "2006-11-27");
+$siswa2 = new Siswa("Bahrun", "1235", "Air Putih", "PPLG", "2007-01-13");
 
-// contoh output:
-// Bambang lebih tua dibandingkan Bahrun.
+// Menghitung umur masing-masing siswa
+$umurSiswa1 = $siswa1->hitungUmur();
+$umurSiswa2 = $siswa2->hitungUmur();
+
+// Membandingkan umur dan menampilkan hasil
+if ($umurSiswa1 > $umurSiswa2) {
+    echo "Bambang lebih tua dibandingkan Bahrun.";
+} else if ($umurSiswa1 < $umurSiswa2) {
+    echo "Bahrun lebih tua dibandingkan Bambang.";
+} else {
+    echo "Bambang dan Bahrun seusia.";
+}
+?>
